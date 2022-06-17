@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { StyleSheet, Text, View,FlatList } from 'react-native';
 import Header from './components/header';
+import TodoInput from './components/todoInput';
 import TodoItem from './components/todoItem';
 
 export default function App() {
@@ -20,10 +21,18 @@ export default function App() {
     })
   }
 
+  const addTodo = (text)=>{
+    if(!text === ""){
+      setTodos((prevTodos)=>{
+        return [...prevTodos, {text, key: Math.random().toString(), isCompleted: false}]
+      })
+    }
+  }
   return (
     <View>
       <Header/>
         <View style={styles.container}>
+          <TodoInput handler={addTodo} />
           <FlatList data={todos} 
             renderItem={({item})=> (
               <TodoItem handler={removeTodo} todo={item}/>
