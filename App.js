@@ -7,10 +7,8 @@ import TodoItem from './components/todoItem';
 export default function App() {
 
   const [todos, setTodos] = useState([
-    { text: 'Learn React Native', key:1, isCompleted: false },
-    { text: 'Learn Node js', key:2, isCompleted: true },
-    { text: 'Learn React', key:3, isCompleted: false },
-    { text: 'Learn Kotlin', key:4, isCompleted: true },
+    { text: 'Learn React Native', key:1,time:"12, Monday, 2020", isCompleted: false },
+
 
   ])
 
@@ -22,9 +20,16 @@ export default function App() {
   }
 
   const addTodo = (text)=>{
-    if(!text === ""){
+    if(text !== ""){
+      const options = {
+        weekday: 'long',
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+      }
+      const time = new Date().toLocaleDateString('en-US', options)
       setTodos((prevTodos)=>{
-        return [...prevTodos, {text, key: Math.random().toString(), isCompleted: false}]
+        return [...prevTodos, {text, key: Math.random().toString(), isCompleted: false,time: time}]
       })
     }
   }

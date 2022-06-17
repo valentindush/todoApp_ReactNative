@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
-import { StyleSheet, Text,View,TextInput, Touchable } from 'react-native'
-import { Button, TouchableOpacity } from 'react-native-web'
+import { StyleSheet, Text,View,TextInput, TouchableOpacity,Button } from 'react-native'
 
 export default function TodoInput(props){
     const [text,setText] = useState("")
@@ -9,7 +8,7 @@ export default function TodoInput(props){
             <TextInput onChangeText={(txt)=>setText(txt)} style={styles.input} placeholder='Enter a new TODO' />
             <View style={styles.button}>
             <TouchableOpacity>
-                <Button onPress={()=>props.handler(text)} title="Add todo" color='cyan' />
+                <Button onPress={()=>props.handler(text)} title="Add todo" color='pink' />
             </TouchableOpacity>
             </View>
         </View>
@@ -21,7 +20,7 @@ const styles = StyleSheet.create({
 
     },
     input:{
-        borderBottomColor: 'cyan',
+        borderBottomColor: 'pink',
         borderBottomWidth: 2,
         padding: 10,
         underlineColorAndroid: 'transparent',
