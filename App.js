@@ -1,20 +1,40 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { useState } from 'react';
+import { StyleSheet, Text, View,FlatList } from 'react-native';
+import Header from './components/header';
+import TodoItem from './components/todoItem';
 
 export default function App() {
+
+  const [todos, setTodos] = useState([
+    { text: 'Learn React Native', key:1, isCompleted: false },
+    { text: 'Learn Node js', key:2, isCompleted: true },
+    { text: 'Learn React', key:3, isCompleted: false },
+    { text: 'Learn Kotlin', key:4, isCompleted: true },
+
+  ])
+
+
+  const removeTodo = (key)=>{
+    setTodos(prevTodos => {
+      return prevTodos.filter(todo => todo.key !== key)
+    })
+  }
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
+    <View>
+      <Header/>
+        <View style={styles.container}>
+          <FlatList data={todos} 
+            renderItem={({item})=> (
+              <TodoItem handler={removeTodo} todo={item}/>
+            )} />
+        </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
+   padding: 10
   },
 });
